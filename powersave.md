@@ -17,3 +17,5 @@ When disconnecting the USB power supply/touchscreen interface between Raspi and 
 So bought a radar sensor board with a MOSFET switch capable of switching up to 1A. This is placed in the +5V path of a USB-A male/female cable between Raspi and Display power supply/touchscreen USB.
 
 DC-SSR Switch Radar DC Microwave Sensor Switch Module
+
+![DC-SSR](DC-SSR.jpeg)
