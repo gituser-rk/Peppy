@@ -18,4 +18,4 @@ So bought a radar sensor board with a MOSFET switch capable of switching up to 1
 
 DC-SSR Switch Radar DC Microwave Sensor Switch Module
 
-![DC-SSR](DC-SSR.jpeg)
+![DC-SSR](DC-SSR.jpg)
