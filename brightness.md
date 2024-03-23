@@ -1,6 +1,6 @@
 # Brightness control for the Display
 
-I use the Waveshare 5inch HDMI LCD (H). It can be modified to enable PWM brightness control.
+I use the Waveshare 5inch HDMI LCD (H). It can be modified to enable Backlight PWM brightness control.
 
 See this document from waveshare:
 https://files.waveshare.com/upload/5/56/PWM_control_backlight_manual.pdf
