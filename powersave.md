@@ -1,6 +1,7 @@
 # Powersaving feature
 
-At first I've implemeted the backlight PWM brightness feature. This is great to reduce the brightness of the display during the night, especially because the radio is used as a bedside alarm clock.
+At first I've implemeted the backlight PWM brightness feature. See ![brightness.md](brightness.md)
+This is great to reduce the brightness of the display during the night, especially because the radio is used as a bedside alarm clock.
 
 But - it does not reduce the amount of used energy that much (below 0.5 watts). 
 
