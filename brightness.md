@@ -8,10 +8,12 @@ https://files.waveshare.com/upload/5/56/PWM_control_backlight_manual.pdf
 I've connected the Raspi GPIO13 to the PWM input of the display and wrote a Python program to run as Systemd service to control the brightness depending of the light level around. A TSL2561 I2C sensor is used, connected to the I2C pins of the Raspi.
 
 Install Python modules:
-sudo apt install -y python3-smbus i2c-tools
+```
+sudo apt install -y python3-smbus i2c-tools python-pip3
 sudo pip3 install --break-system-packages adafruit-blinka
 sudo pip3 install --break-system-packages adafruit-circuitpython-tsl2561
 sudo pip3 install --break-system-packages sdnotify
+```
 
 /opt/brightness/brightness.py
 ```
@@ -21,14 +23,15 @@ import lgpio # pi gpio library for userspace
 import time
 import sdnotify # systemd watchdog
 import board # circuitpython base library
-import adafruit_tsl2561 # sensor circuitpython loibrory
+import adafruit_tsl2561 # sensor circuitpython library
 
+# mapping function to adapt sensor value range to PWM
 def map_range(x, in_min, in_max, out_min, out_max):
     return (x - in_min) * (out_max - out_min) // (in_max - in_min) + out_min
 
 # Configuration
 PWM = 13 # pin used to drive Display PWM 
-FREQ = 100
+FREQ = 100 # in Hz
 
 h = lgpio.gpiochip_open(0)
 
@@ -48,15 +51,15 @@ n = sdnotify.SystemdNotifier()
 try:
     while True:
         x = int(format(sensor.broadband))
-        y = map_range(x,50,8000,5,100)
+        #print(f"Broadband: {x}",end=" ")
+        y = map_range(x,50,8000,5,100) # allowed range for y is 0-100
         lgpio.tx_pwm(h, PWM, FREQ, y)
-        #print(f"Helligkeit: {y}",end=" ")
         n.notify("WATCHDOG=1") #tell the systemd watchdog that we're alive
         time.sleep(0.1)
 
 except KeyboardInterrupt:
     lgpio.tx_pwm(h, PWM, FREQ, 100)
-    print('Helligkeit: {}'.format(y))
+    print('Brightness: {}'.format(y))
     lgpio.gpiochip_close(h)
 ```
 
