@@ -7,6 +7,12 @@ https://files.waveshare.com/upload/5/56/PWM_control_backlight_manual.pdf
 
 I've connected the Raspi GPIO13 to the PWM input of the display and wrote a Python program to run as Systemd service to control the brightness depending of the light level around. A TSL2561 I2C sensor is used, connected to the I2C pins of the Raspi.
 
+Install Python modules:
+sudo apt install -y python3-smbus i2c-tools
+sudo pip3 install --break-system-packages adafruit-blinka
+sudo pip3 install --break-system-packages adafruit-circuitpython-tsl2561
+sudo pip3 install --break-system-packages sdnotify
+
 /opt/brightness/brightness.py
 ```
 #!/usr/bin/python3
