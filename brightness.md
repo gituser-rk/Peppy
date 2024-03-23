@@ -1,6 +1,7 @@
 # Brightness control for the Display
 
-I use the Waveshare 5inch HDMI LCD (H). It can be modified to enable PWM brightness control
+I use the Waveshare 5inch HDMI LCD (H). It can be modified to enable PWM brightness control.
+
 See this document from waveshare:
 https://files.waveshare.com/upload/5/56/PWM_control_backlight_manual.pdf
 
@@ -10,7 +11,7 @@ I've connected the Raspi GPIO13 to the PWM input of the display and wrote a Pyth
 ```
 #!/usr/bin/python3
 
-import lgpio # pi gpio library vor userspace
+import lgpio # pi gpio library for userspace
 import time
 import sdnotify # systemd watchdog
 import board # circuitpython base library
