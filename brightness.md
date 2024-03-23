@@ -15,8 +15,10 @@ sudo pip3 install --break-system-packages adafruit-circuitpython-tsl2561
 sudo pip3 install --break-system-packages sdnotify
 ```
 
-Copy ![brightness.py](brightness.py) to /opt/brightness/brightness.py
-
+Copy ![brightness.py](brightness.py) to /opt/brightness/brightness.py and make it executable:
+```
+chmod +x /opt/brightness/brightness.py
+```
 
 ## Autostart
 created a systemd service with watchdog functionality:
