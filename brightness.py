@@ -42,11 +42,11 @@ try:
             # prevent exeption if value too hight in rare cases (direct sunlight to sensor)
             y = 100
         lgpio.tx_pwm(h, PWM, FREQ, y)
-        #print(f"Helligkeit: {y}",end=" ")
+        #print(f"Brightness: {y}")
         n.notify("WATCHDOG=1") #tell the systemd watchdog that we're alive
         time.sleep(0.1)
 
 except KeyboardInterrupt:
     lgpio.tx_pwm(h, PWM, FREQ, 100)
-    print('Helligkeit: {}'.format(y))
+    print(f"Brightness: {y}")
     lgpio.gpiochip_close(h)
