@@ -1,18 +1,21 @@
 #!/usr/bin/python3
 
-import lgpio # pi gpio library for userspace
+#  Control a 5V PWM fan speed with the lgpio library
+#  Uses lgpio library, compatible with kernel 5.11
+#  Author: William 'jawn-smith' Wilson
+
+import lgpio # pi gpio library vor userspace
 import time
 import sdnotify # systemd watchdog
 import board # circuitpython base library
-import adafruit_tsl2561 # sensor circuitpython library
+import adafruit_tsl2561 # sensor circuitpython loibrory
 
-# mapping function to adapt sensor value range to PWM
 def map_range(x, in_min, in_max, out_min, out_max):
     return (x - in_min) * (out_max - out_min) // (in_max - in_min) + out_min
 
 # Configuration
 PWM = 13 # pin used to drive Display PWM 
-FREQ = 100 # in Hz
+FREQ = 100
 
 h = lgpio.gpiochip_open(0)
 
@@ -32,13 +35,18 @@ n = sdnotify.SystemdNotifier()
 try:
     while True:
         x = int(format(sensor.broadband))
-        #print(f"Broadband: {x}",end=" ")
-        y = map_range(x,50,8000,5,100) # allowed range for y is 0-100
+        y = map_range(x,50,8000,5,100)
+        #print(z)
+        #print('Mapped Broadband: {}'.format(y))
+        if(y >=100):
+            # prevent exeption if value too hight in rare cases (direct sunlight to sensor)
+            y = 100
         lgpio.tx_pwm(h, PWM, FREQ, y)
+        #print(f"Helligkeit: {y}",end=" ")
         n.notify("WATCHDOG=1") #tell the systemd watchdog that we're alive
         time.sleep(0.1)
 
 except KeyboardInterrupt:
     lgpio.tx_pwm(h, PWM, FREQ, 100)
-    print('Brightness: {}'.format(y))
+    print('Helligkeit: {}'.format(y))
     lgpio.gpiochip_close(h)
