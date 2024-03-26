@@ -8,7 +8,7 @@ import lgpio # pi gpio library vor userspace
 import time
 import sdnotify # systemd watchdog
 import board # circuitpython base library
-import adafruit_tsl2561 # sensor circuitpython loibrory
+import adafruit_tsl2561 # sensor circuitpython librory
 
 def map_range(x, in_min, in_max, out_min, out_max):
     return (x - in_min) * (out_max - out_min) // (in_max - in_min) + out_min
