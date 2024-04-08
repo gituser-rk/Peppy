@@ -3,7 +3,7 @@
 At first I've implemeted the backlight PWM brightness feature. See ![brightness.md](brightness.md)
 This is great to reduce the brightness of the display during the night, especially because the radio is used as a bedside alarm clock.
 
-But - it does not reduce the amount of used energy that much (max. 1 Watt). 
+But - it does not reduce the amount of used energy that much (max. minus 1 Watt). 
 
 Power usage is about 4.7 watts when the Peppy player is in screensaver mode (clock display) including display at 100% brightness, amplifier (Innomaker RPI HiFi AMP HAT TAS5713 Amplifier Audio Module 25W) and Raspi Zero 2 W.
 
